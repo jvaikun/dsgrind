@@ -1,0 +1,160 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://TestRange.gd" type="Script" id=1]
+[ext_resource path="res://weapons/Weapon.tscn" type="PackedScene" id=2]
+
+[node name="TestRange" type="Control"]
+script = ExtResource( 1 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Settings" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Settings"]
+margin_right = 197.0
+margin_bottom = 14.0
+text = "TARGET SETTINGS"
+
+[node name="Targets" type="GridContainer" parent="Settings"]
+margin_top = 18.0
+margin_right = 197.0
+margin_bottom = 98.0
+columns = 2
+
+[node name="Label3" type="Label" parent="Settings/Targets"]
+margin_top = 5.0
+margin_right = 119.0
+margin_bottom = 19.0
+text = "Target Density"
+
+[node name="Density" type="SpinBox" parent="Settings/Targets"]
+margin_left = 123.0
+margin_right = 197.0
+margin_bottom = 24.0
+value = 10.0
+
+[node name="Label" type="Label" parent="Settings/Targets"]
+margin_top = 33.0
+margin_right = 119.0
+margin_bottom = 47.0
+text = "Average Target HP"
+
+[node name="BaseHP" type="SpinBox" parent="Settings/Targets"]
+margin_left = 123.0
+margin_top = 28.0
+margin_right = 197.0
+margin_bottom = 52.0
+value = 20.0
+
+[node name="Label2" type="Label" parent="Settings/Targets"]
+margin_top = 61.0
+margin_right = 119.0
+margin_bottom = 75.0
+text = "Target HP Variance"
+
+[node name="VarHP" type="SpinBox" parent="Settings/Targets"]
+margin_left = 123.0
+margin_top = 56.0
+margin_right = 197.0
+margin_bottom = 80.0
+value = 5.0
+
+[node name="Label2" type="Label" parent="Settings"]
+margin_top = 102.0
+margin_right = 197.0
+margin_bottom = 116.0
+text = "WEAPON SETTINGS"
+
+[node name="Weapons" type="GridContainer" parent="Settings"]
+margin_top = 120.0
+margin_right = 197.0
+margin_bottom = 260.0
+columns = 2
+
+[node name="Label" type="Label" parent="Settings/Weapons"]
+margin_top = 3.0
+margin_right = 64.0
+margin_bottom = 17.0
+text = "Weapon 1"
+
+[node name="WeaponList1" type="OptionButton" parent="Settings/Weapons"]
+margin_left = 68.0
+margin_right = 97.0
+margin_bottom = 20.0
+
+[node name="Label2" type="Label" parent="Settings/Weapons"]
+margin_top = 27.0
+margin_right = 64.0
+margin_bottom = 41.0
+text = "Weapon 2"
+
+[node name="WeaponList2" type="OptionButton" parent="Settings/Weapons"]
+margin_left = 68.0
+margin_top = 24.0
+margin_right = 97.0
+margin_bottom = 44.0
+
+[node name="Label3" type="Label" parent="Settings/Weapons"]
+margin_top = 51.0
+margin_right = 64.0
+margin_bottom = 65.0
+text = "Device 1"
+
+[node name="DeviceList1" type="OptionButton" parent="Settings/Weapons"]
+margin_left = 68.0
+margin_top = 48.0
+margin_right = 97.0
+margin_bottom = 68.0
+
+[node name="Label4" type="Label" parent="Settings/Weapons"]
+margin_top = 75.0
+margin_right = 64.0
+margin_bottom = 89.0
+text = "Device 2"
+
+[node name="DeviceList2" type="OptionButton" parent="Settings/Weapons"]
+margin_left = 68.0
+margin_top = 72.0
+margin_right = 97.0
+margin_bottom = 92.0
+
+[node name="Label5" type="Label" parent="Settings/Weapons"]
+margin_top = 99.0
+margin_right = 64.0
+margin_bottom = 113.0
+text = "Device 3"
+
+[node name="DeviceList3" type="OptionButton" parent="Settings/Weapons"]
+margin_left = 68.0
+margin_top = 96.0
+margin_right = 97.0
+margin_bottom = 116.0
+
+[node name="Label6" type="Label" parent="Settings/Weapons"]
+margin_top = 123.0
+margin_right = 64.0
+margin_bottom = 137.0
+text = "Device 4"
+
+[node name="DeviceList4" type="OptionButton" parent="Settings/Weapons"]
+margin_left = 68.0
+margin_top = 120.0
+margin_right = 97.0
+margin_bottom = 140.0
+
+[node name="Weapon1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 634, 642 )
+
+[node name="Weapon2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 634, 642 )
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="item_selected" from="Settings/Weapons/WeaponList1" to="." method="_on_WeaponList1_item_selected"]
+[connection signal="item_selected" from="Settings/Weapons/WeaponList2" to="." method="_on_WeaponList2_item_selected"]
+[connection signal="item_selected" from="Settings/Weapons/DeviceList1" to="." method="_on_DeviceList1_item_selected"]
+[connection signal="item_selected" from="Settings/Weapons/DeviceList2" to="." method="_on_DeviceList2_item_selected"]
+[connection signal="item_selected" from="Settings/Weapons/DeviceList3" to="." method="_on_DeviceList3_item_selected"]
+[connection signal="item_selected" from="Settings/Weapons/DeviceList4" to="." method="_on_DeviceList4_item_selected"]

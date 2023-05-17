@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="UIObjectiveList" type="PanelContainer"]
+margin_right = 167.0
+margin_bottom = 54.0
+
+[node name="Body" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 160.0
+margin_bottom = 47.0
+
+[node name="PrimaryHeader" type="Label" parent="Body"]
+margin_right = 153.0
+margin_bottom = 14.0
+text = "PRIMARY OBJECTIVES"
+
+[node name="PrimaryList" type="VBoxContainer" parent="Body"]
+margin_top = 18.0
+margin_right = 153.0
+margin_bottom = 18.0
+
+[node name="SecondaryHeader" type="Label" parent="Body"]
+margin_top = 22.0
+margin_right = 153.0
+margin_bottom = 36.0
+text = "SECONDARY OBJECTIVES"
+
+[node name="SecondaryList" type="VBoxContainer" parent="Body"]
+margin_top = 40.0
+margin_right = 153.0
+margin_bottom = 40.0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Alexander Brandon - Tyrian- Original Soundtrack - 17 Tunnel.ogg-695d4bb187b7fe2600e6258b8cf3d809.oggstr"
+
+[deps]
+
+source_file="res://bgm/Alexander Brandon - Tyrian- Original Soundtrack - 17 Tunnel.ogg"
+dest_files=[ "res://.import/Alexander Brandon - Tyrian- Original Soundtrack - 17 Tunnel.ogg-695d4bb187b7fe2600e6258b8cf3d809.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

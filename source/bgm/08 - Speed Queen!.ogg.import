@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/08 - Speed Queen!.ogg-da8e4f1aa315d3adbde7753348faa5aa.oggstr"
+
+[deps]
+
+source_file="res://bgm/08 - Speed Queen!.ogg"
+dest_files=[ "res://.import/08 - Speed Queen!.ogg-da8e4f1aa315d3adbde7753348faa5aa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

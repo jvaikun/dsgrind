@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://items/sprites/item_scrap.png" type="Texture" id=2]
+[ext_resource path="res://items/ItemScrap.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 7 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="ItemScrap" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="HitBox" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+frames = SubResource( 2 )

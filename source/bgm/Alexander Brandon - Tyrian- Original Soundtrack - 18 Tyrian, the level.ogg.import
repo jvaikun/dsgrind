@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Alexander Brandon - Tyrian- Original Soundtrack - 18 Tyrian, the level.ogg-b4b5b0e94c57cd9764e050c378ca2fd0.oggstr"
+
+[deps]
+
+source_file="res://bgm/Alexander Brandon - Tyrian- Original Soundtrack - 18 Tyrian, the level.ogg"
+dest_files=[ "res://.import/Alexander Brandon - Tyrian- Original Soundtrack - 18 Tyrian, the level.ogg-b4b5b0e94c57cd9764e050c378ca2fd0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,52 @@
+extends PanelContainer
+
+export var title = ""
+
+onready var slot_name = $Content/SlotName
+onready var item_icon = $Content/Body/ItemIcon
+onready var item_name = $Content/Body/ItemName
+onready var item_mods = $Content/Body/Mods
+onready var highlight = $Highlight
+
+var item_index = ""
+
+signal tile_clicked(slot)
+
+
+func _ready():
+	slot_name.text = title
+
+
+func load_data(database, index, mod_flags):
+	# Load item data from database
+	var item_data = GameData.get_data(database, index)
+	# Load item's inventory data from inventory
+	var inv_data = Game.inventory_equip[index]
+	item_index = index
+	item_icon.texture = load(item_data.icon)
+	item_name.text = item_data.name
+	# Set available mods from inventory data
+	for i in inv_data.mods.size():
+		if inv_data.mods[i]:
+			item_mods.get_node("Mod%d" % (i+1)).value = 1
+	# Item's state from player ship data
+	for i in mod_flags.size():
+		if mod_flags[i]:
+			item_mods.get_node("Mod%d" % (i+1)).modulate = Color(0,1,0)
+		else:
+			item_mods.get_node("Mod%d" % (i+1)).modulate = Color(1,1,1)
+
+
+func _on_EquipSlot_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			emit_signal("tile_clicked", self)
+
+
+func _on_EquipSlot_mouse_entered():
+	highlight.show()
+
+
+func _on_EquipSlot_mouse_exited():
+	highlight.hide()
+
