@@ -22,22 +22,20 @@ func _ready():
 	$EditPart.load_inventory("db_equip", Game.inventory_equip)
 	$EditShip.load_inventory("db_ship", Game.inventory_ship)
 	# Init equip slots
-	ship_slot.load_data("db_ship", player_ship.ship.index, player_ship.ship.mods)
+	ship_slot.load_data("db_ship", player_ship.ship)
 	var this_item
 	for i in weapon_slots.size():
 		this_item = player_ship.weapons[i]
-		weapon_slots[i].load_data("db_equip", this_item.index, this_item.mods)
+		weapon_slots[i].load_data("db_equip", this_item)
 	for i in device_slots.size():
 		this_item = player_ship.devices[i]
-		device_slots[i].load_data("db_equip", this_item.index, this_item.mods)
+		device_slots[i].load_data("db_equip", this_item)
 
 
 func _on_tile_clicked(slot):
 	if slot == ship_slot:
-		$EditShip.show()
-	if slot in weapon_slots:
-		$EditPart.open_window(slot)
-	if slot in device_slots:
+		$EditShip.open_window(slot)
+	else:
 		$EditPart.open_window(slot)
 
 
