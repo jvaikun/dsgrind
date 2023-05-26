@@ -58,7 +58,3 @@ const DATA = {
 	},
 }
 
-
-func get_ship(index):
-	return DATA[index]
-

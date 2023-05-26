@@ -20,7 +20,7 @@ func shoot_weapon():
 		bullet_inst.add_to_group("bullet_player")
 		bullet_inst.global_position = parent.global_position
 		bullet_inst.global_position += i[0].rotated(angle)
-		bullet_angle = angle + i[1]
+		bullet_angle = angle + deg2rad(i[1])
 		bullet_inst.direction = Vector2(cos(bullet_angle), sin(bullet_angle)).normalized()
 		bullet_inst.speed = 600
 		bullet_inst.piercing = 2

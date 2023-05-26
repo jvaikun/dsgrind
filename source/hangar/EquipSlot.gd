@@ -18,10 +18,10 @@ func _ready():
 
 
 func load_data(database, slot):
-	# Load item data from database
-	var item_data = GameData.get_data(database, slot.index)
-	# Load item's inventory data from inventory
 	current_slot = slot
+	# Load item data from database
+	var item_data = GameData.get_data(database, current_slot.index)
+	# Load item's inventory data from inventory
 	var inv_data
 	if database == "db_equip":
 		inv_data = Game.inventory_equip[current_slot.index]
@@ -34,8 +34,8 @@ func load_data(database, slot):
 		if inv_data.mods[i]:
 			item_mods.get_node("Mod%d" % (i+1)).value = 1
 	# Item's state from player ship data
-	for i in slot.mods.size():
-		if slot.mods[i]:
+	for i in current_slot.mods.size():
+		if current_slot.mods[i]:
 			item_mods.get_node("Mod%d" % (i+1)).modulate = Color(0,1,0)
 		else:
 			item_mods.get_node("Mod%d" % (i+1)).modulate = Color(1,1,1)

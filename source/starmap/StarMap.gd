@@ -105,8 +105,15 @@ func add_intel():
 	pass
 
 
+func _on_BtnHangar_pressed():
+	Game.prev_scene = "map"
+	var err = get_tree().change_scene("res://hangar/Hangar.tscn")
+	if err:
+		print("Error changing scene!")
+
+
 func _on_BtnBack_pressed():
-	var err = get_tree().change_scene(Game.prev_scene)
+	var err = get_tree().change_scene("res://ui/MenuTitle.tscn")
 	if err:
 		print("Error changing scene!")
 
@@ -133,3 +140,4 @@ func _on_Factions_item_selected(item):
 		item.object.bases.size(),
 		item.object.fleets.size()
 	]
+

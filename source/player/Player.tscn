@@ -47,7 +47,6 @@ gradient = SubResource( 1 )
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
 rotation = 1.5708
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="HitBox" type="CollisionShape2D" parent="."]

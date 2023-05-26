@@ -1,5 +1,8 @@
 extends Node
 
+const STAT_TEXT = "Damage: %d\nCooldown: %0.2f\nProjectile Speed: %d\n"
+const SHIP_TEXT = "Reactor Power: %d\nHull Armor: %0.2f\nShield Capacity: %d\n"
+
 var db_ship = Resource.new()
 var db_equip = Resource.new()
 var db_mission = Resource.new()
@@ -26,10 +29,11 @@ func get_data(db, index):
 	return get(db).DATA[index]
 
 
-func get_ship(index):
-	return db_ship.get_ship(index)
-
-
-func get_equip(index):
-	return db_equip.get_equip(index)
+func get_statblock(db, index):
+	var data = get(db).DATA[index]
+	match db:
+		"db_equip":
+			return STAT_TEXT % [data.damage, data.cooldown, data.speed]
+		"db_ship":
+			return SHIP_TEXT % [data.power, data.armor, data.shield]
 

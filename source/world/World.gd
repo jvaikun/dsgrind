@@ -112,6 +112,7 @@ func _ready():
 	moisture = generate_map(300, 5)
 	altitude = generate_map(150, 5)
 	set_tile(map_width, map_height)
+	$Player.load_equipment()
 	$Player.connect("entered_portal", self, "exit_world")
 	$Player.connect("status_changed", self, "update_hud")
 	var tile_obj = load("res://ui/UIObjective.tscn")
@@ -161,7 +162,7 @@ func random_tile(data, biome):
 
 
 func exit_world():
-	var err = get_tree().change_scene(Game.prev_scene)
+	var err = get_tree().change_scene("res://starmap/StarMap.tscn")
 	if err:
 		print("Error changing scene!")
 

@@ -48,8 +48,8 @@ func set_armor(value):
 
 
 func _ready():
-	loadout = GameData.get_loadout()
-	var ship_data = GameData.get_ship(loadout.ship)
+	loadout = Game.get_ship_data()
+	var ship_data = GameData.get_data("db_ship", loadout.ship.index)
 	armor_max = ship_data.armor
 	shield_max = ship_data.shield
 	self.armor = armor_max
@@ -78,10 +78,11 @@ func _process(delta):
 
 
 func load_equipment():
-	var data_obj = GameData.get_equip(loadout.weapons.slot1).object
-	weapon1.load_data(data_obj)
-	data_obj = GameData.get_equip(loadout.weapons.slot2).object
-	weapon2.load_data(data_obj)
+	var data_path = ""
+	var weapon_list = [weapon1, weapon2]
+	for i in weapon_list.size():
+		data_path = GameData.get_data("db_equip", loadout.weapons[i].index).script
+		weapon_list[i].load_data(data_path)
 
 
 #func create_explosion():

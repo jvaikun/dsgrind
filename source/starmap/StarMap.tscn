@@ -20,15 +20,21 @@ margin_top = 7.0
 margin_right = 271.0
 margin_bottom = 713.0
 
-[node name="BtnBack" type="Button" parent="Menu/SideBar/Body"]
+[node name="BtnHangar" type="Button" parent="Menu/SideBar/Body"]
 margin_right = 264.0
 margin_bottom = 20.0
-text = "Back"
+text = "Hangar"
 
-[node name="Details" type="VBoxContainer" parent="Menu/SideBar/Body"]
+[node name="BtnBack" type="Button" parent="Menu/SideBar/Body"]
 margin_top = 24.0
 margin_right = 264.0
-margin_bottom = 280.0
+margin_bottom = 44.0
+text = "Return to Title"
+
+[node name="Details" type="VBoxContainer" parent="Menu/SideBar/Body"]
+margin_top = 48.0
+margin_right = 264.0
+margin_bottom = 304.0
 rect_min_size = Vector2( 0, 256 )
 
 [node name="Text" type="RichTextLabel" parent="Menu/SideBar/Body/Details"]
@@ -49,7 +55,7 @@ margin_bottom = 256.0
 text = "Run Mission"
 
 [node name="Tabs" type="TabContainer" parent="Menu/SideBar/Body"]
-margin_top = 284.0
+margin_top = 308.0
 margin_right = 264.0
 margin_bottom = 706.0
 size_flags_vertical = 3
@@ -142,6 +148,7 @@ position = Vector2( 1272, 656 )
 
 [node name="Missions" type="Node2D" parent="."]
 
+[connection signal="pressed" from="Menu/SideBar/Body/BtnHangar" to="." method="_on_BtnHangar_pressed"]
 [connection signal="pressed" from="Menu/SideBar/Body/BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="item_selected" from="Menu/SideBar/Body/Tabs/Missions" to="." method="_on_Missions_item_selected"]
 [connection signal="item_selected" from="Menu/SideBar/Body/Tabs/Intel" to="." method="_on_Intel_item_selected"]

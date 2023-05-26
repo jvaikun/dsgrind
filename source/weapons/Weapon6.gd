@@ -19,7 +19,7 @@ func shoot_weapon():
 	var bullet_angle
 	for i in bullet_pattern:
 		bullet_inst = bullet_obj.instance()
-		get_parent().add_child(bullet_inst)
+		get_tree().root.add_child(bullet_inst)
 		bullet_inst.add_to_group("bullet")
 		bullet_inst.add_to_group("bullet_player")
 		bullet_inst.global_position = parent.global_position

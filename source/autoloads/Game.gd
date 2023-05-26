@@ -30,7 +30,7 @@ var player_ship = {
 	},
 	"weapons": [
 		{"index":"002", "mods": [true, false, false, false, false, false, false, false, ]},
-		{"index":"003", "mods": [true, false, false, false, false, false, false, false, ]},
+		{"index":"004", "mods": [true, false, false, false, false, false, false, false, ]},
 	],
 	"devices": [
 		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},

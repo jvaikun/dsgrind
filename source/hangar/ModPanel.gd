@@ -3,6 +3,7 @@ extends PanelContainer
 onready var status = $Content/ModStatus
 onready var mod_name = $Content/ModName
 
+var mod_index = 0
 var mod_info = "" setget set_info
 var mod_desc = ""
 var unlocked = false setget set_unlock
