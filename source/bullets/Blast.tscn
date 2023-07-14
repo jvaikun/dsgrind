@@ -4,6 +4,7 @@
 [ext_resource path="res://bullets/Blast.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=18]
+resource_local_to_scene = true
 radius = 32.0
 
 [sub_resource type="AtlasTexture" id=10]
@@ -50,7 +51,7 @@ animations = [ {
 [node name="Blast" type="Area2D" groups=["bullet"]]
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 18 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]

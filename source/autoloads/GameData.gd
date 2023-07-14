@@ -11,10 +11,10 @@ var db_faction = Resource.new()
 
 func _ready():
 	randomize()
-	db_ship.set_script(load("res://data/DBShip.gd"))
-	db_equip.set_script(load("res://data/DBEquip.gd"))
-	db_mission.set_script(load("res://data/DBMission.gd"))
-	db_faction.set_script(load("res://data/DBFaction.gd"))
+	db_ship.set_script(load("res://data/database/DBShip.gd"))
+	db_equip.set_script(load("res://data/database/DBEquip.gd"))
+	db_mission.set_script(load("res://data/database/DBMission.gd"))
+	db_faction.set_script(load("res://data/database/DBFaction.gd"))
 
 
 func generate_faction():

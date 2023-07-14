@@ -8,34 +8,28 @@
 resource_local_to_scene = true
 extents = Vector2( 16, 16 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=7]
 resource_local_to_scene = true
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "default",
-"speed": 15.0
+"speed": 10.0
 } ]
 
 [node name="EnemyGunner" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="HitBox" parent="." index="0"]
+[node name="HitBox" parent="." index="2"]
 shape = SubResource( 4 )
-
-[node name="AnimatedSprite" parent="." index="1"]
-rotation = 1.5708
-frames = SubResource( 3 )
-frame = 1
-playing = true
 
 [node name="ShootPos1" type="Position2D" parent="." index="3"]
 position = Vector2( 16, -11 )
@@ -43,6 +37,12 @@ position = Vector2( 16, -11 )
 [node name="ShootPos2" type="Position2D" parent="." index="4"]
 position = Vector2( 16, 11 )
 
-[node name="ShootTimer" parent="." index="5"]
+[node name="Sprite" parent="." index="5"]
+rotation = 1.5708
+frames = SubResource( 7 )
+frame = 1
+playing = true
+
+[node name="ShootTimer" parent="." index="7"]
 wait_time = 0.25
 autostart = true

@@ -150,6 +150,7 @@ position = Vector2( 1272, 656 )
 
 [connection signal="pressed" from="Menu/SideBar/Body/BtnHangar" to="." method="_on_BtnHangar_pressed"]
 [connection signal="pressed" from="Menu/SideBar/Body/BtnBack" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="Menu/SideBar/Body/Details/BtnRun" to="." method="_on_BtnRun_pressed"]
 [connection signal="item_selected" from="Menu/SideBar/Body/Tabs/Missions" to="." method="_on_Missions_item_selected"]
 [connection signal="item_selected" from="Menu/SideBar/Body/Tabs/Intel" to="." method="_on_Intel_item_selected"]
 [connection signal="item_selected" from="Menu/SideBar/Body/Tabs/Factions" to="." method="_on_Factions_item_selected"]

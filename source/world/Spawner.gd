@@ -8,10 +8,9 @@ const ENEMIES = [
 	"res://enemies/EnemyGunner.tscn",
 	"res://enemies/EnemyHeavy.tscn",
 	"res://enemies/EnemyStriker.tscn",
-	"res://enemies/EnemyTarget.tscn",
 ]
 
-var enemy_index = 3
+var enemy_index = 0
 var spawn_time = 1.0
 var hp = 10 setget set_hp
 var score_value = 5
@@ -60,7 +59,6 @@ func _on_SpawnTimer_timeout():
 	var enemy_obj = load(ENEMIES[enemy_index])
 	var enemy_inst = enemy_obj.instance()
 	get_parent().add_child(enemy_inst)
-	enemy_inst.move_pattern.set_script(load("res://data/MoveSine.gd"))
 	enemy_inst.position = self.position
 	enemy_inst.direction = Vector2(1,1)
 	$SpawnTimer.start(spawn_time)

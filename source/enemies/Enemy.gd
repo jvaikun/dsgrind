@@ -1,5 +1,7 @@
 class_name Enemy
-extends Node2D
+extends KinematicBody2D
+
+enum ThinkState {IDLE, PATROL, HUNT, ATTACK, FLEE}
 
 const explode_obj = preload("res://effects/Explosion.tscn")
 const impact_obj = preload("res://effects/Impact.tscn")
@@ -7,19 +9,42 @@ const impact_obj = preload("res://effects/Impact.tscn")
 var hp = 1 setget set_hp
 var score_value = 5
 var direction = Vector2.DOWN setget set_dir
+var state = ThinkState.PATROL setget set_state
+var think_time = 0.5
+var is_thinking = false
+var target_inst : Area2D
+var target_pos : Vector2
+
 var speed = 0
-var origin = 0
-var time = 0.0
-var time_scale = 1.0
 var shot_pattern = []
 var shot_time = 1.0
-var move_pattern = Resource.new()
 var drop_list = [
 	{"item":"res://items/ItemMetal.tscn", "min":1, "max":3},
 	{"item":"res://items/ItemEnergy.tscn", "min":1, "max":3},
 ]
 
 signal enemy_dead
+
+
+func set_state(val):
+	if val in ThinkState.values():
+		state = val
+	match state:
+		ThinkState.IDLE:
+			$ShootTimer.stop()
+			think_time = 0.2
+			speed = 0
+		ThinkState.PATROL:
+			$ShootTimer.stop()
+			think_time = 0.2
+		ThinkState.HUNT:
+			$ShootTimer.start(shot_time)
+			think_time = 0.1
+		ThinkState.ATTACK:
+			think_time = 0.1
+		ThinkState.FLEE:
+			think_time = 0.1
+
 
 func set_hp(value):
 	hp = value
@@ -34,19 +59,24 @@ func set_hp(value):
 
 func set_dir(value : Vector2):
 	direction = value
-	rotation_degrees = rad2deg(direction.angle())
+	rotation = direction.angle()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.state = ThinkState.IDLE
 	$ShootTimer.start(shot_time)
-	move_pattern.set_script(load("res://data/MoveDown.gd"))
+	$ThinkTimer.start(think_time)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = move_pattern.get_velocity(speed, delta).rotated(direction.angle())
-	translate(velocity * delta)
+	var velocity = direction.normalized() * speed
+	move_and_slide(velocity)
+
+
+func think():
+	pass
 
 
 func shoot():
@@ -56,6 +86,7 @@ func shoot():
 	for shot in shot_pattern:
 		bullet_inst = shot.bullet.instance()
 		get_parent().add_child(bullet_inst)
+		bullet_inst.group = "enemy"
 		bullet_inst.global_position = shot.pos.global_position
 		bullet_angle = self_angle + deg2rad(shot.angle)
 		bullet_inst.direction = Vector2(cos(bullet_angle), sin(bullet_angle)).normalized()
@@ -77,12 +108,10 @@ func drop_items():
 
 
 func _on_VisCheck_screen_exited():
-	if !is_queued_for_deletion():
-		emit_signal("enemy_dead", self)
-		queue_free()
+	pass
 
 
-func _on_Enemy_area_entered(area):
+func _on_HitBox_area_entered(area):
 	if area.is_in_group("bullet_player"):
 		self.hp -= area.dmg
 		var impact_inst = impact_obj.instance()
@@ -95,5 +124,25 @@ func _on_Enemy_area_entered(area):
 
 
 func _on_ShootTimer_timeout():
-	$ShootTimer.start(shot_time)
 	shoot()
+	$ShootTimer.start(shot_time)
+
+
+func _on_ThinkTimer_timeout():
+	think()
+	$ThinkTimer.start(think_time)
+
+
+func _on_DetectRadius_area_entered(area):
+	if area.is_in_group("player"):
+		target_pos = area.global_position
+		target_inst = area
+	set_state(ThinkState.HUNT)
+
+
+func _on_DetectRadius_area_exited(area):
+	if area.is_in_group("player"):
+		target_pos = area.global_position
+		target_inst = null
+		set_state(ThinkState.IDLE)
+

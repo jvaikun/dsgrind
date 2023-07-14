@@ -24,6 +24,8 @@ animations = [ {
 } ]
 
 [node name="BulletEnemy" groups=["bullet_enemy"] instance=ExtResource( 1 )]
+collision_layer = 16
+collision_mask = 3
 
 [node name="HitBox" parent="." index="0"]
 shape = SubResource( 4 )
@@ -31,5 +33,4 @@ shape = SubResource( 4 )
 [node name="Sprite" type="AnimatedSprite" parent="." index="2"]
 modulate = Color( 1, 0.4, 0.4, 1 )
 frames = SubResource( 3 )
-frame = 1
 playing = true

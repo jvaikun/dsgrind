@@ -23,7 +23,7 @@ func _process(delta):
 
 func explode():
 	var blast_inst = blast_obj.instance()
-	blast_inst.add_to_group("bullet_player")
+	blast_inst.group = self.group
 	blast_inst.global_position = self.global_position
 	get_tree().root.call_deferred("add_child", blast_inst)
 	queue_free()

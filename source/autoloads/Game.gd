@@ -17,6 +17,11 @@ var inventory_equip = {
 	"006":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
 	"007":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
 	"008":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
+	"009":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
+	"010":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
+	"011":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
+	"012":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
+	"013":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
 }
 var inventory_ship = {
 	"001":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
@@ -28,11 +33,9 @@ var player_ship = {
 		"index": "001",
 		"mods": [false, false, false, false, false, false, false, false, ],
 	},
-	"weapons": [
+	"equip": [
 		{"index":"002", "mods": [true, false, false, false, false, false, false, false, ]},
-		{"index":"004", "mods": [true, false, false, false, false, false, false, false, ]},
-	],
-	"devices": [
+		{"index":"009", "mods": [true, false, false, false, false, false, false, false, ]},
 		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},
 		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},
 		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},

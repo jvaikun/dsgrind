@@ -1,5 +1,9 @@
 extends ColorRect
 
+func _ready():
+	if OS.get_name() == "HTML5":
+		$HBoxContainer/Body/BtnQuit.hide()
+
 
 func _on_BtnMap_pressed():
 	Game.prev_scene = "title"

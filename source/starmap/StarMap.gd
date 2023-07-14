@@ -118,6 +118,12 @@ func _on_BtnBack_pressed():
 		print("Error changing scene!")
 
 
+func _on_BtnRun_pressed():
+	var err = get_tree().change_scene("res://world/World.tscn")
+	if err:
+		print("Error changing scene!")
+
+
 func _on_Missions_item_selected(item):
 	$Menu/SideBar/Body/Details/Text.text = mission_info_text % [item.title, item.desc, item.data.get_objectives()]
 	var marker_list = mission_node.get_children()

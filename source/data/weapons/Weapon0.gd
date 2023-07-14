@@ -7,6 +7,7 @@ const bullet_pattern = [
 ]
 const cooldown = 0.05
 
+var mods = [false, false, false, false, false, false, false, false]
 
 func shoot_weapon():
 	pass
