@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://player/weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ships/sprites/player1.png" type="Texture" id=2]
+[ext_resource path="res://hangar/equip_preview.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 190, 310 )
+
+[node name="EquipPreview" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="DemoArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="DemoArea"]
+position = Vector2( 0, -182 )
+shape = SubResource( 1 )
+
+[node name="Ship" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Weapon" parent="Ship" instance=ExtResource( 1 )]
+rotation = -1.5708
+
+[connection signal="area_exited" from="DemoArea" to="." method="_on_DemoArea_area_exited"]

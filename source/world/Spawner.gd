@@ -1,25 +1,27 @@
 extends Area2D
 
-const explode_obj = preload("res://effects/Explosion.tscn")
-const impact_obj = preload("res://effects/Impact.tscn")
+const explode_obj = preload("res://effects/explosion.tscn")
+const impact_obj = preload("res://effects/impact.tscn")
 
 const ENEMIES = [
-	"res://enemies/EnemyDrone.tscn",
-	"res://enemies/EnemyGunner.tscn",
-	"res://enemies/EnemyHeavy.tscn",
-	"res://enemies/EnemyStriker.tscn",
+	"res://enemies/enemy_drone.tscn",
+	"res://enemies/enemy_gunner.tscn",
+	"res://enemies/enemy_heavy.tscn",
+	"res://enemies/enemy_striker.tscn",
 ]
 
 var enemy_index = 0
 var spawn_time = 1.0
 var hp = 10 setget set_hp
 var score_value = 5
+var unit_limit = 8
+var unit_list = []
 
 var drop_list = [
-	{"item":"res://items/ItemMetal.tscn", "min":1, "max":3},
-	{"item":"res://items/ItemEnergy.tscn", "min":1, "max":3},
-	{"item":"res://items/ItemData.tscn", "min":0, "max":1},
-	{"item":"res://items/ItemScrap.tscn", "min":0, "max":1},
+	{"item":"res://items/item_metal.tscn", "min":1, "max":3},
+	{"item":"res://items/item_energy.tscn", "min":1, "max":3},
+	{"item":"res://items/item_data.tscn", "min":0, "max":1},
+	{"item":"res://items/item_scrap.tscn", "min":0, "max":1},
 ]
 
 signal enemy_dead
@@ -56,12 +58,17 @@ func drop_items():
 
 
 func _on_SpawnTimer_timeout():
-	var enemy_obj = load(ENEMIES[enemy_index])
-	var enemy_inst = enemy_obj.instance()
-	get_parent().add_child(enemy_inst)
-	enemy_inst.position = self.position
-	enemy_inst.direction = Vector2(1,1)
-	$SpawnTimer.start(spawn_time)
+	for unit in unit_list:
+		if !is_instance_valid(unit):
+			unit_list.erase(unit)
+	if unit_list.size() < unit_limit:
+		var enemy_obj = load(ENEMIES[enemy_index])
+		var enemy_inst = enemy_obj.instance()
+		get_parent().add_child(enemy_inst)
+		unit_list.append(enemy_inst)
+		enemy_inst.position = self.position
+		enemy_inst.direction = Vector2(1,1)
+		$SpawnTimer.start(spawn_time)
 
 
 func _on_Spawner_area_entered(area):

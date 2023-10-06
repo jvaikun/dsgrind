@@ -1,6 +1,6 @@
 extends Node
 
-const bullet_obj = preload("res://bullets/Plasma.tscn")
+const bullet_obj = preload("res://bullets/plasma.tscn")
 const bullet_pattern = [
 	[Vector2(0, 0), 0],
 	[Vector2(0, -8), -30],
@@ -24,5 +24,5 @@ func shoot_weapon():
 		bullet_inst.global_position += i[0].rotated(angle)
 		bullet_angle = angle + deg2rad(i[1])
 		bullet_inst.direction = Vector2(cos(bullet_angle), sin(bullet_angle)).normalized()
-		bullet_inst.speed = 100
+		bullet_inst.speed = 25
 

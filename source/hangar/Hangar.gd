@@ -1,6 +1,6 @@
 extends Control
 
-const panel_obj = preload("res://ui/ItemTile.tscn")
+const panel_obj = preload("res://ui/item_tile.tscn")
 
 onready var ship_slot = $Center/Ship
 onready var weapon_slots = [

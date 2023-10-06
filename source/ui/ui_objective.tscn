@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/textures/bar_bg.png" type="Texture" id=1]
+[ext_resource path="res://ui/textures/bar_fg.png" type="Texture" id=2]
+[ext_resource path="res://ui/textures/bar_fill.png" type="Texture" id=3]
+[ext_resource path="res://ui/ui_objective.gd" type="Script" id=4]
+
+[node name="UIObjective" type="PanelContainer"]
+margin_right = 142.0
+margin_bottom = 66.0
+script = ExtResource( 4 )
+
+[node name="Body" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 135.0
+margin_bottom = 59.0
+
+[node name="Name" type="Label" parent="Body"]
+margin_right = 128.0
+margin_bottom = 14.0
+text = "Objective Name"
+
+[node name="Progress" type="Label" parent="Body"]
+margin_top = 18.0
+margin_right = 128.0
+margin_bottom = 32.0
+text = "Objective Progress"
+
+[node name="ProgressBar" type="TextureProgress" parent="Body"]
+margin_top = 36.0
+margin_right = 128.0
+margin_bottom = 52.0
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 3 )

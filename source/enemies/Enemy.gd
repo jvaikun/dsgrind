@@ -3,8 +3,8 @@ extends KinematicBody2D
 
 enum ThinkState {IDLE, PATROL, HUNT, ATTACK, FLEE}
 
-const explode_obj = preload("res://effects/Explosion.tscn")
-const impact_obj = preload("res://effects/Impact.tscn")
+const explode_obj = preload("res://effects/explosion.tscn")
+const impact_obj = preload("res://effects/impact.tscn")
 
 var hp = 1 setget set_hp
 var score_value = 5
@@ -19,8 +19,8 @@ var speed = 0
 var shot_pattern = []
 var shot_time = 1.0
 var drop_list = [
-	{"item":"res://items/ItemMetal.tscn", "min":1, "max":3},
-	{"item":"res://items/ItemEnergy.tscn", "min":1, "max":3},
+	{"item":"res://items/item_metal.tscn", "min":1, "max":3},
+	{"item":"res://items/item_energy.tscn", "min":1, "max":3},
 ]
 
 signal enemy_dead

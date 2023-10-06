@@ -1,6 +1,6 @@
 extends Bullet
 
-const blast_obj = preload("res://bullets/Blast.tscn")
+const blast_obj = preload("res://bullets/blast.tscn")
 
 var detect_radius = 20 setget set_radius
 var start_time = 0.5

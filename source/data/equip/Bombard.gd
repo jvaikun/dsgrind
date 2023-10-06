@@ -1,6 +1,6 @@
 extends Node
 
-const bullet_obj = preload("res://bullets/Blast.tscn")
+const bullet_obj = preload("res://bullets/blast.tscn")
 const bullet_count = 16
 const cooldown = 0.5
 

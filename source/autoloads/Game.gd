@@ -1,10 +1,10 @@
 extends Node
 
 const scene_list = {
-	"title":"res://ui/MenuTitle.tscn",
-	"hangar":"res://hangar/Hangar.tscn",
-	"mission":"res://world/Mission.tscn",
-	"map":"res://starmap/StarMap.tscn",
+	"title":"res://ui/menu_title.tscn",
+	"hangar":"res://hangar/hangar.tscn",
+	"mission":"res://world/mission.tscn",
+	"map":"res://starmap/star_map.tscn",
 }
 
 var prev_scene = null setget ,get_prev_scene
@@ -35,11 +35,11 @@ var player_ship = {
 	},
 	"equip": [
 		{"index":"002", "mods": [true, false, false, false, false, false, false, false, ]},
-		{"index":"009", "mods": [true, false, false, false, false, false, false, false, ]},
-		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},
-		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},
-		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},
-		{"index":"001", "mods": [false, false, false, false, false, false, false, false, ]},
+		{"index":"004", "mods": [true, false, false, false, false, false, false, false, ]},
+		{"index":"003", "mods": [false, false, false, false, false, false, false, false, ]},
+		{"index":"006", "mods": [false, false, false, false, false, false, false, false, ]},
+		{"index":"007", "mods": [false, false, false, false, false, false, false, false, ]},
+		{"index":"008", "mods": [false, false, false, false, false, false, false, false, ]},
 	],
 }
 

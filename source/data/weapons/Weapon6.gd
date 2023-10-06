@@ -1,6 +1,6 @@
 extends Node
 
-const bullet_obj = preload("res://bullets/Mine.tscn")
+const bullet_obj = preload("res://bullets/mine.tscn")
 const bullet_pattern = [
 	[Vector2(0, -8), 0],
 	[Vector2(0, -8), 30],
@@ -9,7 +9,7 @@ const bullet_pattern = [
 	[Vector2(0, 8), -30],
 	[Vector2(0, 8), -60],
 ]
-const cooldown = 1.0
+const cooldown = 1.5
 
 var mods = [false, false, false, false, false, false, false, false]
 

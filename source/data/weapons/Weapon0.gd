@@ -1,6 +1,6 @@
 extends Node
 
-const bullet_obj = preload("res://bullets/BulletPlayer.tscn")
+const bullet_obj = preload("res://bullets/bullet_player.tscn")
 const bullet_pattern = [
 	[Vector2(0, -6), 0],
 	[Vector2(0, 6), 0],

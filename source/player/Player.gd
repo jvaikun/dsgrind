@@ -5,12 +5,14 @@ extends KinematicBody2D
 
 # Accessor vars
 onready var shield_timer = $ShieldTimer
-onready var slot1 = $Slot1
-onready var slot2 = $Slot2
-onready var slot3 = $Slot3
-onready var slot4 = $Slot4
-onready var slot5 = $Slot5
-onready var slot6 = $Slot6
+onready var slot_list = [
+	{"slot":$Slot1, "input":"shoot_primary"},
+	{"slot":$Slot2, "input":"shoot_secondary"},
+	{"slot":$Slot3, "input":"use_slot1"},
+	{"slot":$Slot4, "input":"use_slot2"},
+	{"slot":$Slot5, "input":"use_slot3"},
+	{"slot":$Slot6, "input":"use_slot4"},
+]
 
 # Ship stats
 var speed = 300
@@ -25,9 +27,12 @@ var loadout = {}
 
 # General vars
 var move_target = Vector2.ZERO
-var input_vector = Vector2.ZERO
+var move_vector = Vector2.ZERO
+var aim_vector = Vector2.ZERO
+var skill_proccing = false
 
 signal status_changed
+signal equip_used(slot_num)
 signal player_died
 signal entered_portal
 
@@ -67,35 +72,37 @@ func _ready():
 
 
 func _process(delta):
-		input_vector = Vector2.ZERO
-		input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-		input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-		if input_vector.length() > 0:
-			rotation = input_vector.angle()
-			move_target = global_position
-			if !Input.is_action_pressed("move_hold"):
-				move_and_slide(input_vector.normalized() * speed)
-		if Input.is_action_pressed("move"):
-			move_target = get_global_mouse_position()
-		var move_vector = (move_target - global_position)
-		if move_vector.length() > 16:
-			rotation = move_vector.angle()
-			if Input.is_action_pressed("move_hold"):
-				move_target = global_position
-			else:
-				move_and_slide(move_vector.normalized() * speed)
-		if Input.is_action_pressed("shoot_primary"):
-			slot1.shoot()
-		if Input.is_action_pressed("shoot_secondary"):
-			slot2.shoot()
+	move_vector = Vector2.ZERO
+	move_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	move_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	aim_vector = Vector2.ZERO
+	aim_vector.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	aim_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
+	if aim_vector == Vector2.ZERO:
+		aim_vector = get_global_mouse_position() - global_position
+	rotation = aim_vector.angle()
+	move_and_slide(move_vector.normalized() * speed)
+	for i in slot_list.size():
+		if slot_list[i].input != "shoot_secondary" and Input.is_action_pressed(slot_list[i].input):
+			if slot_list[i].slot.cooldown > 1.0 and !slot_list[i].slot.on_cooldown:
+				emit_signal("equip_used", i)
+			slot_list[i].slot.shoot()
+	if Input.is_action_just_pressed("shoot_secondary"):
+		#Find aim direction
+		var zip_vector = aim_vector.normalized() * 128
+		#Raycast with full length
+		
+		#Destination at endpoint or collision point
+		#Move location to destination
+		translate(zip_vector)
+		#slot2.shoot()
 
 
 func load_equipment():
 	var data_path = ""
-	var weapon_list = [slot1, slot2, slot3, slot4, slot5, slot6]
-	for i in weapon_list.size():
+	for i in slot_list.size():
 		data_path = GameData.get_data("db_equip", loadout.equip[i].index).script
-		weapon_list[i].load_data(data_path)
+		slot_list[i].slot.load_data(data_path)
 
 
 #func create_explosion():

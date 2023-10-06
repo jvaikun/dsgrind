@@ -3,16 +3,18 @@ extends Node2D
 const BUILDING_SIZE = 32
 const TILE_SIZE = 16
 const OBJECT_LIST = {
-		"factory": preload("res://world/Spawner.tscn"),
-		"depot": preload("res://enemies/EnemyTarget.tscn"),
+		"factory": preload("res://world/spawner.tscn"),
+		"depot": preload("res://enemies/enemy_target.tscn"),
 	}
-const portal_obj = preload("res://world/ExitPortal.tscn")
+const portal_obj = preload("res://world/exit_portal.tscn")
+
+onready var skill_list = $UI/Skills/SkillList.get_children()
 
 var mission_data = Mission.new()
 var target_list = {}
 
 var noise
-var map_size = Vector2(2560, 1440)
+var map_size = Vector2(3840, 2160)
 var grass_cap = 0.5
 var road_caps = Vector2(0.3, 0.05)
 var enviroment_caps = Vector3(0.4, 0.3, 0.04)
@@ -21,19 +23,29 @@ var enviroment_caps = Vector3(0.4, 0.3, 0.04)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	# Generate map
 	noise = OpenSimplexNoise.new()
 	noise.seed = randi()
 	noise.octaves = 1.0
 	noise.period = 12
-#	noise.persistence = 0.7
+	#noise.persistence = 0.7
 	make_grass_map()
 	make_road_map()
 	make_enviroment_map()
 	make_background()
+	# Set up player and connect to HUD
 	$Player.load_equipment()
 	$Player.connect("entered_portal", self, "exit_world")
 	$Player.connect("status_changed", self, "update_hud")
-	var tile_obj = load("res://ui/UIObjective.tscn")
+	$Player.connect("equip_used", self, "equip_cooldown")
+	var equip_cooldown = 0.0
+	var equip_icon = ""
+	for i in skill_list.size():
+		equip_cooldown = $Player.slot_list[i].slot.cooldown
+		equip_icon = GameData.get_data("db_equip", $Player.loadout.equip[i].index).icon
+		skill_list[i].load_skill(equip_icon, equip_cooldown)
+	# Load objectives
+	var tile_obj = load("res://ui/ui_objective.tscn")
 	var tile_inst
 	for obj in mission_data.objectives.primary:
 		tile_inst = tile_obj.instance()
@@ -97,8 +109,8 @@ func spawn_objective(obj, tile):
 		spawn_inst = spawn_obj.instance()
 		get_parent().add_child(spawn_inst)
 		spawn_inst.position = Vector2(
-			randi() % int(scaled_size.x - 4) + 4,
-			randi() % int(scaled_size.y - 4) + 4
+			randi() % int(scaled_size.x - 10) + 10,
+			randi() % int(scaled_size.y - 10) + 10
 		) * BUILDING_SIZE
 		if obj.target == "factory":
 			spawn_inst.enemy_index = randi() % spawn_inst.ENEMIES.size()
@@ -117,9 +129,14 @@ func random_tile(data, biome):
 
 
 func exit_world():
-	var err = get_tree().change_scene("res://starmap/StarMap.tscn")
+	var err = get_tree().change_scene("res://starmap/star_map.tscn")
 	if err:
 		print("Error changing scene!")
+
+
+func equip_cooldown(slot_index):
+	if slot_index < skill_list.size():
+		skill_list[slot_index].use_skill()
 
 
 func update_hud(player):
