@@ -1,11 +1,11 @@
 extends PanelContainer
 
-var icon = load("res://ui/icons/icon_arm0.png") setget set_icon
-var title = "Item Name" setget set_title
-var desc = "Item Info" setget set_desc
+var icon = load("res://ui/icons/icon_arm0.png"): set = set_icon
+var title = "Item Name": set = set_title
+var desc = "Item Info": set = set_desc
 var data = {}
 var object = null
-var highlight = false setget set_highlight
+var highlight = false: set = set_highlight
 
 signal tile_clicked(tile)
 
@@ -39,6 +39,6 @@ func set_desc(value):
 
 func _on_ListTile_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			emit_signal("tile_clicked", self)
 

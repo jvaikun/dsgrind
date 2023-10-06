@@ -7,14 +7,14 @@ func _ready():
 
 func _on_BtnMap_pressed():
 	Game.prev_scene = "title"
-	var err = get_tree().change_scene("res://starmap/star_map.tscn")
+	var err = get_tree().change_scene_to_file("res://starmap/star_map.tscn")
 	if err:
 		print("Error changing scene!")
 
 
 func _on_BtnHangar_pressed():
 	Game.prev_scene = "title"
-	var err = get_tree().change_scene("res://hangar/hangar.tscn")
+	var err = get_tree().change_scene_to_file("res://hangar/hangar.tscn")
 	if err:
 		print("Error changing scene!")
 
@@ -25,7 +25,7 @@ func _on_BtnRange_pressed():
 
 func _on_BtnMission_pressed():
 	Game.prev_scene = "title"
-	var err = get_tree().change_scene("res://world/world.tscn")
+	var err = get_tree().change_scene_to_file("res://world/world.tscn")
 	if err:
 		print("Error changing scene!")
 

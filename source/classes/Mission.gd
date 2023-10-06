@@ -50,7 +50,7 @@ func get_objectives():
 	var secondary_list = ""
 	for obj in objectives.primary:
 		primary_list += objective_text % [obj.type.capitalize(), obj.target, obj.amount, obj.pay]
-	if objectives.secondary.empty():
+	if objectives.secondary.is_empty():
 		secondary_list = "None"
 	else:
 		for obj in objectives.secondary:

@@ -46,7 +46,7 @@ const NAMES = {
 		"Killing","Lair","Land","Ledge","Legacy","Let-down","Level","Leverage","Lodge",
 		"Look","Luck","Madness","Memorial","Mork","Mouth","Needle","Nest","Night",
 		"Nightfall","Nightmare","Oddness","Outback","Outpost","Overhang","Overlook","Palace","Pass",
-		"Passage","Path","Patrol","Pearl","Perfection","Pit","Pitfall","Plateau","Pocket",
+		"Passage","Path3D","Patrol","Pearl","Perfection","Pit","Pitfall","Plateau","Pocket",
 		"Point","Position","Prize","Pursuit","Rage","Raid","Ravine","Relief","Reserve",
 		"Retreat","Return","Rising","Risk","Rock","Roof","Run","Sadness","Salute",
 		"Sanctuary","Scream","Senit","Shaft","Shelf","Shelter","Shock","Shroud","Skull",

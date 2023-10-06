@@ -1,11 +1,11 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 #const scn_explosion = preload("res://scenes/explosion.tscn")
 #const scn_flash     = preload("res://scenes/flash.tscn")
 
 # Accessor vars
-onready var shield_timer = $ShieldTimer
-onready var slot_list = [
+@onready var shield_timer = $ShieldTimer
+@onready var slot_list = [
 	{"slot":$Slot1, "input":"shoot_primary"},
 	{"slot":$Slot2, "input":"shoot_secondary"},
 	{"slot":$Slot3, "input":"use_slot1"},
@@ -18,8 +18,8 @@ onready var slot_list = [
 var speed = 300
 var armor_max = 0
 var shield_max = 0
-var armor = armor_max setget set_armor
-var shield = shield_max setget set_shield
+var armor = armor_max: set = set_armor
+var shield = shield_max: set = set_shield
 var charge_rate = 5.0
 var can_charge = true
 var loot = []
@@ -81,7 +81,8 @@ func _process(delta):
 	if aim_vector == Vector2.ZERO:
 		aim_vector = get_global_mouse_position() - global_position
 	rotation = aim_vector.angle()
-	move_and_slide(move_vector.normalized() * speed)
+	set_velocity(move_vector.normalized() * speed)
+	move_and_slide()
 	for i in slot_list.size():
 		if slot_list[i].input != "shoot_secondary" and Input.is_action_pressed(slot_list[i].input):
 			if slot_list[i].slot.cooldown > 1.0 and !slot_list[i].slot.on_cooldown:

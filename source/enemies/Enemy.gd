@@ -1,15 +1,15 @@
 class_name Enemy
-extends KinematicBody2D
+extends CharacterBody2D
 
 enum ThinkState {IDLE, PATROL, HUNT, ATTACK, FLEE}
 
 const explode_obj = preload("res://effects/explosion.tscn")
 const impact_obj = preload("res://effects/impact.tscn")
 
-var hp = 1 setget set_hp
+var hp = 1: set = set_hp
 var score_value = 5
-var direction = Vector2.DOWN setget set_dir
-var state = ThinkState.PATROL setget set_state
+var direction = Vector2.DOWN: set = set_dir
+var state = ThinkState.PATROL: set = set_state
 var think_time = 0.5
 var is_thinking = false
 var target_inst : Area2D
@@ -50,7 +50,7 @@ func set_hp(value):
 	hp = value
 	if hp <= 0 and !is_queued_for_deletion():
 		emit_signal("enemy_dead", self)
-		var explode_inst = explode_obj.instance()
+		var explode_inst = explode_obj.instantiate()
 		get_parent().add_child(explode_inst)
 		explode_inst.global_position = global_position
 		drop_items()
@@ -72,7 +72,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = direction.normalized() * speed
-	move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
 
 
 func think():
@@ -84,11 +85,11 @@ func shoot():
 	var bullet_inst
 	var bullet_angle
 	for shot in shot_pattern:
-		bullet_inst = shot.bullet.instance()
+		bullet_inst = shot.bullet.instantiate()
 		get_parent().add_child(bullet_inst)
 		bullet_inst.group = "enemy"
 		bullet_inst.global_position = shot.pos.global_position
-		bullet_angle = self_angle + deg2rad(shot.angle)
+		bullet_angle = self_angle + deg_to_rad(shot.angle)
 		bullet_inst.direction = Vector2(cos(bullet_angle), sin(bullet_angle)).normalized()
 
 
@@ -100,7 +101,7 @@ func drop_items():
 		item_count = (randi() % drop.max) + drop.min
 		for i in item_count:
 			item_obj = load(drop.item)
-			item_inst = item_obj.instance()
+			item_inst = item_obj.instantiate()
 			get_parent().call_deferred("add_child", item_inst)
 			item_inst.global_position = global_position
 			item_inst.direction = Vector2((randf() * 2.0) - 1.0, (randf() * 2.0) - 1.0).normalized()
@@ -114,7 +115,7 @@ func _on_VisCheck_screen_exited():
 func _on_HitBox_area_entered(area):
 	if area.is_in_group("bullet_player"):
 		self.hp -= area.dmg
-		var impact_inst = impact_obj.instance()
+		var impact_inst = impact_obj.instantiate()
 		get_parent().add_child(impact_inst)
 		impact_inst.global_position = area.global_position
 		if area.piercing > 0:

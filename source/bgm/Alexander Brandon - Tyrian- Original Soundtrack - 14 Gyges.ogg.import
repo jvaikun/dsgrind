@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/Alexander Brandon - Tyrian- Original Soundtrack - 14 Gyges.ogg-ef0ee1fa89e5118227386568e6beb03f.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cuhhrsg8hjuh2"
+path="res://.godot/imported/Alexander Brandon - Tyrian- Original Soundtrack - 14 Gyges.ogg-ef0ee1fa89e5118227386568e6beb03f.oggvorbisstr"
 
 [deps]
 
 source_file="res://bgm/Alexander Brandon - Tyrian- Original Soundtrack - 14 Gyges.ogg"
-dest_files=[ "res://.import/Alexander Brandon - Tyrian- Original Soundtrack - 14 Gyges.ogg-ef0ee1fa89e5118227386568e6beb03f.oggstr" ]
+dest_files=["res://.godot/imported/Alexander Brandon - Tyrian- Original Soundtrack - 14 Gyges.ogg-ef0ee1fa89e5118227386568e6beb03f.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

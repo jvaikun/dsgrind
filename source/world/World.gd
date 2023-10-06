@@ -8,7 +8,7 @@ const OBJECT_LIST = {
 	}
 const portal_obj = preload("res://world/exit_portal.tscn")
 
-onready var skill_list = $UI/Skills/SkillList.get_children()
+@onready var skill_list = $UI/Skills/SkillList.get_children()
 
 var mission_data = Mission.new()
 var target_list = {}
@@ -24,20 +24,20 @@ var enviroment_caps = Vector3(0.4, 0.3, 0.04)
 func _ready():
 	randomize()
 	# Generate map
-	noise = OpenSimplexNoise.new()
-	noise.seed = randi()
-	noise.octaves = 1.0
-	noise.period = 12
-	#noise.persistence = 0.7
-	make_grass_map()
-	make_road_map()
-	make_enviroment_map()
-	make_background()
+#	noise = FastNoiseLite.new()
+#	noise.seed = randi()
+#	noise.fractal_octaves = 1.0
+#	noise.frequency = 12
+#	#noise.persistence = 0.7
+#	make_grass_map()
+#	make_road_map()
+#	make_enviroment_map()
+#	make_background()
 	# Set up player and connect to HUD
 	$Player.load_equipment()
-	$Player.connect("entered_portal", self, "exit_world")
-	$Player.connect("status_changed", self, "update_hud")
-	$Player.connect("equip_used", self, "equip_cooldown")
+	$Player.connect("entered_portal", Callable(self, "exit_world"))
+	$Player.connect("status_changed", Callable(self, "update_hud"))
+	$Player.connect("equip_used", Callable(self, "equip_cooldown"))
 	var equip_cooldown = 0.0
 	var equip_icon = ""
 	for i in skill_list.size():
@@ -48,12 +48,12 @@ func _ready():
 	var tile_obj = load("res://ui/ui_objective.tscn")
 	var tile_inst
 	for obj in mission_data.objectives.primary:
-		tile_inst = tile_obj.instance()
+		tile_inst = tile_obj.instantiate()
 		$UI/UIObjectiveList/Body/PrimaryList.add_child(tile_inst)
 		tile_inst.set_objective(obj)
 		spawn_objective(obj, tile_inst)
 	for obj in mission_data.objectives.secondary:
-		tile_inst = tile_obj.instance()
+		tile_inst = tile_obj.instantiate()
 		$UI/UIObjectiveList/Body/SecondaryList.add_child(tile_inst)
 		tile_inst.set_objective(obj)
 		spawn_objective(obj, tile_inst)
@@ -106,7 +106,7 @@ func spawn_objective(obj, tile):
 	var spawn_inst
 	var scaled_size = (map_size / BUILDING_SIZE)
 	for i in obj.amount:
-		spawn_inst = spawn_obj.instance()
+		spawn_inst = spawn_obj.instantiate()
 		get_parent().add_child(spawn_inst)
 		spawn_inst.position = Vector2(
 			randi() % int(scaled_size.x - 10) + 10,
@@ -115,12 +115,12 @@ func spawn_objective(obj, tile):
 		if obj.target == "factory":
 			spawn_inst.enemy_index = randi() % spawn_inst.ENEMIES.size()
 		target_list[spawn_inst] = tile
-		spawn_inst.connect(obj.signal, self, "update_objectives")
+		spawn_inst.connect(obj.signal, Callable(self, "update_objectives"))
 
 
 func random_tile(data, biome):
 	var current_biome = data[biome]
-	var rand_num = rand_range(0,1)
+	var rand_num = randf_range(0,1)
 	var running_total = 0
 	for tile in current_biome:
 			running_total = running_total+current_biome[tile]
@@ -129,7 +129,7 @@ func random_tile(data, biome):
 
 
 func exit_world():
-	var err = get_tree().change_scene("res://starmap/star_map.tscn")
+	var err = get_tree().change_scene_to_file("res://starmap/star_map.tscn")
 	if err:
 		print("Error changing scene!")
 
@@ -151,8 +151,8 @@ func update_objectives(object):
 		target_list[object].update_objective()
 		target_list.erase(object)
 		print("Total remaining targets: " + str(target_list.size()))
-	if target_list.empty():
-		var portal_inst = portal_obj.instance()
+	if target_list.is_empty():
+		var portal_inst = portal_obj.instantiate()
 		portal_inst.position = Vector2(512, 128)
 		call_deferred("add_child", portal_inst)
 

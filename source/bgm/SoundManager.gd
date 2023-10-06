@@ -1,8 +1,8 @@
 extends Node
 
-onready var bgm = $BGMFiles
-onready var clip = $ClipFiles
-onready var player = $BGMPlayer
+@onready var bgm = $BGMFiles
+@onready var clip = $ClipFiles
+@onready var player = $BGMPlayer
 
 var playlist = []
 var current = ""
@@ -10,7 +10,7 @@ var current = ""
 func _ready():
 	playlist = bgm.get_resource_list()
 	player.volume_db = -10
-	player.connect("finished", self, "next_track")
+	player.connect("finished", Callable(self, "next_track"))
 	pass
 
 func play_clip(title):

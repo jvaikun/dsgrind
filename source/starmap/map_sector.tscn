@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://starmap/sprites/node1.png" type="Texture" id=1]
-[ext_resource path="res://starmap/sprites/crosshair.png" type="Texture" id=2]
+[ext_resource path="res://starmap/sprites/node1.png" type="Texture2D" id=1]
+[ext_resource path="res://starmap/sprites/crosshair.png" type="Texture2D" id=2]
 [ext_resource path="res://starmap/map_sector.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -33,15 +33,15 @@ script = ExtResource( 3 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 1, 0, 0, 0.501961 )
-polygon = PoolVector2Array( -112, -64, 0, -128, 112, -64, 112, 64, 0, 128, -112, 64 )
+polygon = PackedVector2Array( -112, -64, 0, -128, 112, -64, 112, 64, 0, 128, -112, 64 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
 frame = 1
 playing = true
 
-[node name="Crosshair" type="Sprite" parent="."]
+[node name="Crosshair" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource( 2 )
 

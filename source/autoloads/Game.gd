@@ -7,7 +7,7 @@ const scene_list = {
 	"map":"res://starmap/star_map.tscn",
 }
 
-var prev_scene = null setget ,get_prev_scene
+var prev_scene = null: get = get_prev_scene
 var inventory_equip = {
 	"001":{"unlocked":true, "bought":true, "mods":[false, false, false, false, false, false, false, false, ]},
 	"002":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},

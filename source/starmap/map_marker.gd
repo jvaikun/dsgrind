@@ -2,10 +2,10 @@ extends Node2D
 
 enum MarkType {MISSION, SECTOR}
 
-onready var highlight = $Highlight
+@onready var highlight = $Highlight
 
-var type = MarkType.MISSION setget set_type
-var is_focus = false setget set_focus
+var type = MarkType.MISSION: set = set_type
+var is_focus = false: set = set_focus
 
 
 func set_type(value):

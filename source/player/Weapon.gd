@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var data = $WeaponData
-onready var cooldown_timer = $Cooldown
+@onready var data = $WeaponData
+@onready var cooldown_timer = $Cooldown
 
 var cooldown = 1.0
 var on_cooldown = false

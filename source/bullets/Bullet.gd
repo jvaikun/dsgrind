@@ -1,8 +1,8 @@
 class_name Bullet
 extends Area2D
 
-var group = "player" setget set_group
-var direction = Vector2.ZERO setget set_dir
+var group = "player": set = set_group
+var direction = Vector2.ZERO: set = set_dir
 var speed = 400
 var dmg = 1
 var piercing = 0
@@ -17,16 +17,16 @@ func set_group(new_group):
 			add_to_group("bullet_player")
 			collision_layer = 1
 			collision_mask = 1
-			set_collision_layer_bit(3, true)
-			set_collision_mask_bit(0, true)
-			set_collision_mask_bit(2, true)
+			set_collision_layer_value(4, true)
+			set_collision_mask_value(1, true)
+			set_collision_mask_value(3, true)
 		"enemy":
 			add_to_group("bullet_enemy")
 			collision_layer = 1
 			collision_mask = 1
-			set_collision_layer_bit(4, true)
-			set_collision_mask_bit(0, true)
-			set_collision_mask_bit(1, true)
+			set_collision_layer_value(5, true)
+			set_collision_mask_value(1, true)
+			set_collision_mask_value(2, true)
 
 
 func _ready():
@@ -35,7 +35,7 @@ func _ready():
 
 func set_dir(value : Vector2):
 	direction = value
-	rotation_degrees = rad2deg(direction.angle())
+	rotation_degrees = rad_to_deg(direction.angle())
 
 
 func _process(delta):

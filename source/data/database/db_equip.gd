@@ -146,7 +146,7 @@ const DATA = {
 			],
 		},
 	"009":{
-		"name":"Area Bombardment", 
+		"name":"Area3D Bombardment", 
 		"script": "res://data/equip/Bombard.gd",
 		"icon": "res://ui/icons/icon_spc1.png",
 		"damage": 1,

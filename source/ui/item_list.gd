@@ -8,9 +8,9 @@ signal item_selected(item)
 
 
 func add_item(item_data):
-	var tile_inst = tile_obj.instance()
+	var tile_inst = tile_obj.instantiate()
 	$Items.add_child(tile_inst)
-	tile_inst.connect("tile_clicked", self, "tile_click")
+	tile_inst.connect("tile_clicked", Callable(self, "tile_click"))
 	tile_inst.title = item_data.title
 	tile_inst.icon = item_data.icon
 	tile_inst.desc = item_data.desc

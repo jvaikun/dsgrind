@@ -1,20 +1,20 @@
 extends PanelContainer
 
-onready var status = $Content/ModStatus
-onready var mod_name = $Content/ModName
+@onready var status = $Content/ModStatus
+@onready var mod_name = $Content/ModName
 
 var mod_index = 0
-var mod_info = "" setget set_info
+var mod_info = "": set = set_info
 var mod_desc = ""
-var unlocked = false setget set_unlock
-var active = false setget set_active
+var unlocked = false: set = set_unlock
+var active = false: set = set_active
 
 signal mod_clicked(mod)
 
 
 func _on_ModPanel_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			emit_signal("mod_clicked", self)
 
 

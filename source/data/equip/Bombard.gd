@@ -12,7 +12,7 @@ func shoot_weapon():
 	var angle = parent.global_transform.get_rotation()
 	var bullet_angle
 	for i in bullet_count:
-		bullet_inst = bullet_obj.instance()
+		bullet_inst = bullet_obj.instantiate()
 		get_tree().root.add_child(bullet_inst)
 		bullet_inst.group = "player"
 		bullet_inst.global_position = parent.global_position

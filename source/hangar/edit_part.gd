@@ -1,12 +1,12 @@
 extends PanelContainer
 
-onready var part_list = $Content/Body/PartList
-onready var top_header = $Content/Header
-onready var stat_block = $Content/Body/Info/Stats/Label
-onready var mod_list = $Content/Body/Tuning/Content/ModList
-onready var mod_desc = $Content/Body/Tuning/Content/Body
-onready var btn_unlock = $Content/Body/Tuning/Content/BtnUnlockMod
-onready var btn_toggle = $Content/Body/Tuning/Content/BtnToggleMod
+@onready var part_list = $Content/Body/PartList
+@onready var top_header = $Content/Header
+@onready var stat_block = $Content/Body/Info/Stats/Label
+@onready var mod_list = $Content/Body/Tuning/Content/ModList
+@onready var mod_desc = $Content/Body/Tuning/Content/Body
+@onready var btn_unlock = $Content/Body/Tuning/Content/BtnUnlockMod
+@onready var btn_toggle = $Content/Body/Tuning/Content/BtnToggleMod
 
 var db_name = ""
 var inventory_data = null

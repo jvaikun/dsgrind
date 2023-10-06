@@ -17,7 +17,7 @@ script = ExtResource( 1 )
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="BGMFiles" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "bgm_1", "bgm_2", "bgm_3", "bgm_4", "bgm_5", "bgm_6", "station", "title" ), [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 2 ) ] ]
+resources = [ PackedStringArray( "bgm_1", "bgm_2", "bgm_3", "bgm_4", "bgm_5", "bgm_6", "station", "title" ), [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 2 ) ] ]
 
 [node name="ClipFiles" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "end_level" ), [ ExtResource( 10 ) ] ]
+resources = [ PackedStringArray( "end_level" ), [ ExtResource( 10 ) ] ]

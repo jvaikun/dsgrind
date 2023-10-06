@@ -2,7 +2,7 @@ extends Bullet
 
 const blast_obj = preload("res://bullets/blast.tscn")
 
-var detect_radius = 20 setget set_radius
+var detect_radius = 20: set = set_radius
 var start_time = 0.5
 var idle_speed = 50
 var timer = 0.0
@@ -22,7 +22,7 @@ func _process(delta):
 
 
 func explode():
-	var blast_inst = blast_obj.instance()
+	var blast_inst = blast_obj.instantiate()
 	blast_inst.group = self.group
 	blast_inst.global_position = self.global_position
 	get_tree().root.call_deferred("add_child", blast_inst)

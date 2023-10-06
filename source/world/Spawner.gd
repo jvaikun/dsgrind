@@ -12,7 +12,7 @@ const ENEMIES = [
 
 var enemy_index = 0
 var spawn_time = 1.0
-var hp = 10 setget set_hp
+var hp = 10: set = set_hp
 var score_value = 5
 var unit_limit = 8
 var unit_list = []
@@ -31,7 +31,7 @@ func set_hp(value):
 	hp = value
 	if hp <= 0 and !is_queued_for_deletion():
 		emit_signal("enemy_dead", self)
-		var explode_inst = explode_obj.instance()
+		var explode_inst = explode_obj.instantiate()
 		get_parent().add_child(explode_inst)
 		explode_inst.global_position = global_position
 		drop_items()
@@ -50,7 +50,7 @@ func drop_items():
 		item_count = (randi() % drop.max) + drop.min
 		for i in item_count:
 			item_obj = load(drop.item)
-			item_inst = item_obj.instance()
+			item_inst = item_obj.instantiate()
 			get_parent().call_deferred("add_child", item_inst)
 			item_inst.global_position = global_position
 			item_inst.direction = Vector2((randf() * 2.0) - 1.0, (randf() * 2.0) - 1.0).normalized()
@@ -63,7 +63,7 @@ func _on_SpawnTimer_timeout():
 			unit_list.erase(unit)
 	if unit_list.size() < unit_limit:
 		var enemy_obj = load(ENEMIES[enemy_index])
-		var enemy_inst = enemy_obj.instance()
+		var enemy_inst = enemy_obj.instantiate()
 		get_parent().add_child(enemy_inst)
 		unit_list.append(enemy_inst)
 		enemy_inst.position = self.position
@@ -74,7 +74,7 @@ func _on_SpawnTimer_timeout():
 func _on_Spawner_area_entered(area):
 	if area.is_in_group("bullet_player"):
 		self.hp -= area.dmg
-		var impact_inst = impact_obj.instance()
+		var impact_inst = impact_obj.instantiate()
 		get_parent().add_child(impact_inst)
 		impact_inst.global_position = area.global_position
 		if area.piercing > 0:

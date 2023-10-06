@@ -10,73 +10,73 @@ anchor_bottom = 1.0
 script = ExtResource( 1 )
 
 [node name="Background" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="ShipTex" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = -64.0
-margin_bottom = 64.0
+offset_top = -64.0
+offset_bottom = 64.0
 
 [node name="Left" type="VBoxContainer" parent="."]
 anchor_bottom = 1.0
-margin_right = 256.0
+offset_right = 256.0
 alignment = 1
 
 [node name="Weapon1" parent="Left" instance=ExtResource( 3 )]
-margin_top = 164.0
-margin_bottom = 292.0
+offset_top = 164.0
+offset_bottom = 292.0
 title = "Weapon 1"
 
 [node name="Device1" parent="Left" instance=ExtResource( 3 )]
-margin_top = 296.0
-margin_bottom = 424.0
+offset_top = 296.0
+offset_bottom = 424.0
 title = "Device 1"
 
 [node name="Device2" parent="Left" instance=ExtResource( 3 )]
-margin_top = 428.0
-margin_bottom = 556.0
+offset_top = 428.0
+offset_bottom = 556.0
 title = "Device 2"
 
 [node name="Right" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -256.0
+offset_left = -256.0
 alignment = 1
 
 [node name="Weapon2" parent="Right" instance=ExtResource( 3 )]
-margin_top = 164.0
-margin_bottom = 292.0
+offset_top = 164.0
+offset_bottom = 292.0
 title = "Weapon 2"
 
 [node name="Device3" parent="Right" instance=ExtResource( 3 )]
-margin_top = 296.0
-margin_bottom = 424.0
+offset_top = 296.0
+offset_bottom = 424.0
 title = "Device 3"
 
 [node name="Device4" parent="Right" instance=ExtResource( 3 )]
-margin_top = 428.0
-margin_bottom = 556.0
+offset_top = 428.0
+offset_bottom = 556.0
 title = "Device 4"
 
 [node name="Center" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-margin_bottom = 128.0
+offset_bottom = 128.0
 alignment = 1
 
 [node name="BtnBack" type="Button" parent="Center"]
-margin_left = 460.0
-margin_right = 559.0
-margin_bottom = 128.0
+offset_left = 460.0
+offset_right = 559.0
+offset_bottom = 128.0
 text = "Back to Menu"
 
 [node name="Ship" parent="Center" instance=ExtResource( 3 )]
-margin_left = 563.0
-margin_right = 819.0
+offset_left = 563.0
+offset_right = 819.0
 title = "Ship Type"
 
 [node name="EditPart" parent="." instance=ExtResource( 4 )]

@@ -1,12 +1,12 @@
 extends PanelContainer
 
-export var title = ""
+@export var title = ""
 
-onready var slot_name = $Content/SlotName
-onready var item_icon = $Content/Body/ItemIcon
-onready var item_name = $Content/Body/ItemName
-onready var item_mods = $Content/Body/Mods
-onready var highlight = $Highlight
+@onready var slot_name = $Content/SlotName
+@onready var item_icon = $Content/Body/ItemIcon
+@onready var item_name = $Content/Body/ItemName
+@onready var item_mods = $Content/Body/Mods
+@onready var highlight = $Highlight
 
 var current_slot = null
 
@@ -43,7 +43,7 @@ func load_data(database, slot):
 
 func _on_EquipSlot_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			emit_signal("tile_clicked", self)
 
 
