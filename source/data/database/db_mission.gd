@@ -46,7 +46,7 @@ const NAMES = {
 		"Killing","Lair","Land","Ledge","Legacy","Let-down","Level","Leverage","Lodge",
 		"Look","Luck","Madness","Memorial","Mork","Mouth","Needle","Nest","Night",
 		"Nightfall","Nightmare","Oddness","Outback","Outpost","Overhang","Overlook","Palace","Pass",
-		"Passage","Path3D","Patrol","Pearl","Perfection","Pit","Pitfall","Plateau","Pocket",
+		"Passage","Path","Patrol","Pearl","Perfection","Pit","Pitfall","Plateau","Pocket",
 		"Point","Position","Prize","Pursuit","Rage","Raid","Ravine","Relief","Reserve",
 		"Retreat","Return","Rising","Risk","Rock","Roof","Run","Sadness","Salute",
 		"Sanctuary","Scream","Senit","Shaft","Shelf","Shelter","Shock","Shroud","Skull",
@@ -57,12 +57,40 @@ const NAMES = {
 	],
 }
 const OBJECTIVES = {
-	"types": [
-		
+	"types":[
+		"destroy_general",
+		"destroy_unit",
+		"destroy_structure",
+		"collect",
+		"scan",
 	],
 	"targets": [
-		
+		{"name":"factory", "node":"", "signal":""},
+		{"name":"depot", "node":"", "signal":""},
+		{"name":"generator", "node":"", "signal":""},
+		{"name":"base", "node":"", "signal":""},
 	],
+	"bonuses": [
+		"time",
+		"destroy",
+		"no_death",
+	],
+}
+const MAPS = {
+	"space_normal":{"name":"Space", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"space_dark":{"name":"Deep Space", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"space_nebula":{"name":"Inner Nebula", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"asteroid":{"name":"Asteroid Belt", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"planet_ice":{"name":"Ice Planet", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"planet_forest":{"name":"Forest Planet", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"planet_jungle":{"name":"Jungle Planet", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"planet_desert":{"name":"Desert Planet", "hazards":["meteorite", "ion_storm"], "tileset":""},
+	"planet_gas":{"name":"Gas Giant", "hazards":["meteorite", "ion_storm"], "tileset":""}
+}
+const HAZARDS = {
+	"none":{"name":"None", "script":""},
+	"meteorite":{"name":"Meteorite Shower", "script":""},
+	"ion_storm":{"name":"Ion Storms", "script":""},
 }
 
 
@@ -72,10 +100,35 @@ func generate_mission():
 		NAMES.first[randi() % NAMES.first.size()],
 		NAMES.last[randi() % NAMES.last.size()]
 	]
-#	new_mission.rating = 0
-#	new_mission.revive_cost = 1000
-#	new_mission.revive_count = 3
-#	new_mission.map_type = 0
-#	new_mission.factions = []
-#	new_mission.objectives = {}
+	new_mission.rating = 0
+	new_mission.revive_cost = 1000
+	new_mission.revive_count = 3
+	new_mission.map = MAPS.keys().pick_random()
+	new_mission.hazards.append(MAPS[new_mission.map].hazards.pick_random())
+	new_mission.factions = [
+		{"id":0, "hostility":-10, "influence":+20},
+		{"id":1, "hostility":+10, "influence":-20},
+	]
+	new_mission.objectives = {
+		"primary":[
+			{
+				"type":"destroy", 
+				"target":"factory",
+				"signal":"enemy_dead",
+				"amount":5,
+				"amount_type":"count",
+				"pay":1000,
+			},
+		],
+		"secondary":[
+			{
+				"type":"destroy", 
+				"target":"depot",
+				"signal":"enemy_dead",
+				"amount":5,
+				"amount_type":"count",
+				"pay":500,
+			},
+		],
+	}
 	return new_mission

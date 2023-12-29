@@ -1,0 +1,226 @@
+[gd_scene load_steps=9 format=3 uid="uid://cp4cucg0waiw6"]
+
+[ext_resource type="Script" path="res://market/market.gd" id="1_1s5l8"]
+[ext_resource type="PackedScene" uid="uid://dshbthhxymj2b" path="res://ui/nav_bar.tscn" id="2_wt7tc"]
+[ext_resource type="FontFile" uid="uid://c780w3p5m5wq7" path="res://ui/fonts/Kenney Pixel.ttf" id="3_reapp"]
+[ext_resource type="Texture2D" uid="uid://o8logr7b7lxq" path="res://ui/textures/portraits.png" id="4_mifdd"]
+[ext_resource type="PackedScene" path="res://ui/item_list.tscn" id="4_yd8j6"]
+[ext_resource type="Texture2D" uid="uid://f1uwqnuyqntt" path="res://market/fm_bar.png" id="6_5nhpp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bomfm"]
+atlas = ExtResource("4_mifdd")
+region = Rect2(128, 80, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y86x6"]
+atlas = ExtResource("4_mifdd")
+region = Rect2(192, 240, 64, 80)
+
+[node name="Market" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1s5l8")
+
+[node name="NavBar" parent="." instance=ExtResource("2_wt7tc")]
+layout_mode = 1
+offset_right = 244.0
+offset_bottom = 75.0
+
+[node name="TechBroker" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="HBoxContainer" parent="TechBroker"]
+layout_mode = 2
+
+[node name="Vendor" type="VBoxContainer" parent="TechBroker/Content"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TechBroker/Content/Vendor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 48
+text = "Technology Broker"
+
+[node name="Vendor" type="HBoxContainer" parent="TechBroker/Content/Vendor"]
+layout_mode = 2
+
+[node name="Face" type="TextureRect" parent="TechBroker/Content/Vendor/Vendor"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 160)
+layout_mode = 2
+texture = SubResource("AtlasTexture_bomfm")
+stretch_mode = 4
+
+[node name="Talk" type="Label" parent="TechBroker/Content/Vendor/Vendor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Whaddya need?"
+
+[node name="Schematics" type="VBoxContainer" parent="TechBroker/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="TechBroker/Content/Schematics"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Schematics for Sale"
+horizontal_alignment = 1
+
+[node name="List" parent="TechBroker/Content/Schematics" instance=ExtResource("4_yd8j6")]
+layout_mode = 2
+
+[node name="BtnBuy" type="Button" parent="TechBroker/Content/Schematics"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Buy Schematic"
+
+[node name="BtnLeave" type="Button" parent="TechBroker/Content/Schematics"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Leave"
+
+[node name="InfoBroker" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="HBoxContainer" parent="InfoBroker"]
+layout_mode = 2
+
+[node name="Vendor" type="VBoxContainer" parent="InfoBroker/Content"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InfoBroker/Content/Vendor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 48
+text = "Information Broker"
+
+[node name="Vendor" type="HBoxContainer" parent="InfoBroker/Content/Vendor"]
+layout_mode = 2
+
+[node name="Face" type="TextureRect" parent="InfoBroker/Content/Vendor/Vendor"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 160)
+layout_mode = 2
+texture = SubResource("AtlasTexture_y86x6")
+stretch_mode = 4
+
+[node name="Talk" type="Label" parent="InfoBroker/Content/Vendor/Vendor"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Whaddya need?"
+
+[node name="Intel" type="VBoxContainer" parent="InfoBroker/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="InfoBroker/Content/Intel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Intel for Sale"
+horizontal_alignment = 1
+
+[node name="List" parent="InfoBroker/Content/Intel" instance=ExtResource("4_yd8j6")]
+layout_mode = 2
+
+[node name="BtnBuy" type="Button" parent="InfoBroker/Content/Intel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Buy Intel"
+
+[node name="BtnLeave" type="Button" parent="InfoBroker/Content/Intel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Leave"
+
+[node name="Bar" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Bar"]
+custom_minimum_size = Vector2(512, 448)
+layout_mode = 2
+texture = ExtResource("6_5nhpp")
+
+[node name="Header" type="Label" parent="Bar"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 48
+text = "The Station Bar"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Bar"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Button" type="Button" parent="Bar/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Have a drink"
+
+[node name="Button2" type="Button" parent="Bar/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Buy a round"
+
+[node name="Button3" type="Button" parent="Bar/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Play slots"
+
+[node name="Button4" type="Button" parent="Bar/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Play poker"
+
+[node name="Button5" type="Button" parent="Bar/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reapp")
+theme_override_font_sizes/font_size = 32
+text = "Leave"

@@ -1,48 +1,59 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://j1mwjtk7tnts"]
 
-[ext_resource path="res://starmap/sprites/node1.png" type="Texture2D" id=1]
-[ext_resource path="res://starmap/sprites/crosshair.png" type="Texture2D" id=2]
-[ext_resource path="res://starmap/map_sector.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://42vjctolrbyq" path="res://starmap/sprites/node1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cqmy0spbww78k" path="res://starmap/sprites/crosshair.png" id="2"]
+[ext_resource type="Script" path="res://starmap/map_sector.gd" id="3"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 11, 11 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 11, 11)
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 11, 0, 11, 11 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("1")
+region = Rect2(11, 0, 11, 11)
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 22, 0, 11, 11 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("1")
+region = Rect2(22, 0, 11, 11)
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 33, 0, 11, 11 )
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("1")
+region = Rect2(33, 0, 11, 11)
 
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}],
 "loop": true,
-"name": "default",
+"name": &"default",
 "speed": 8.0
-} ]
+}]
 
 [node name="MapSector" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 1, 0, 0, 0.501961 )
-polygon = PackedVector2Array( -112, -64, 0, -128, 112, -64, 112, 64, 0, 128, -112, 64 )
+color = Color(1, 0, 0, 0.501961)
+polygon = PackedVector2Array(-112, -64, 0, -128, 112, -64, 112, 64, 0, 128, -112, 64)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2( 2, 2 )
-frames = SubResource( 5 )
+scale = Vector2(2, 2)
+sprite_frames = SubResource("5")
 frame = 1
-playing = true
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 
 [node name="Links" type="Node2D" parent="."]

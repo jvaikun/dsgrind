@@ -1,7 +1,6 @@
 class_name Intel
 extends Resource
 
-var name = "Objective"
+var title = "Intel Title"
 var type = "kill"
-var goal = 100
 

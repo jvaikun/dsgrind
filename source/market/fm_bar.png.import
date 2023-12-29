@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdquu525nxbh1"
-path="res://.godot/imported/snow-expansion.png-6434e941012f6b4d968879382ef928fd.ctex"
+uid="uid://f1uwqnuyqntt"
+path="res://.godot/imported/fm_bar.png-5a039893ca8df8c657ec02703d8f6747.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/snow-expansion.png"
-dest_files=["res://.godot/imported/snow-expansion.png-6434e941012f6b4d968879382ef928fd.ctex"]
+source_file="res://market/fm_bar.png"
+dest_files=["res://.godot/imported/fm_bar.png-5a039893ca8df8c657ec02703d8f6747.ctex"]
 
 [params]
 

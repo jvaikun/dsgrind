@@ -49,14 +49,11 @@ const NAMES = {
 
 func generate_faction():
 	var new_faction = Faction.new()
-	new_faction.name =  "%s %s" % [
+	new_faction.name = "%s %s" % [
 		NAMES.first[randi() % NAMES.first.size()],
 		NAMES.last[randi() % NAMES.last.size()]
 	]
-#	new_faction.desc = "Faction Description"
-#	new_faction.supply = 1000
-#	new_faction.suspicion = 0
-#	new_faction.bases = []
-#	new_faction.fleets = []
+	new_faction.desc = "Faction Description"
+	new_faction.hostility = 0
 	return new_faction
 

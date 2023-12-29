@@ -1,13 +1,23 @@
 extends Node
 
+const HUB_AREAS = [
+	{"title":"HANGAR", "scene":"res://hangar/hangar.tscn"},
+	{"title":"STARMAP", "scene":"res://starmap/star_map.tscn"},
+	{"title":"MARKET", "scene":"res://market/market.tscn"},
+]
 const scene_list = {
 	"title":"res://ui/menu_title.tscn",
 	"hangar":"res://hangar/hangar.tscn",
 	"mission":"res://world/mission.tscn",
 	"map":"res://starmap/star_map.tscn",
+	"market":"res://market/market.tscn",
 }
 
-var prev_scene = null: get = get_prev_scene
+var current_hub_area : int
+var prev_scene = null : get = get_prev_scene
+var factions = []
+var sectors = []
+var intel = []
 var inventory_equip = {
 	"001":{"unlocked":true, "bought":true, "mods":[false, false, false, false, false, false, false, false, ]},
 	"002":{"unlocked":true, "bought":true, "mods":[true, false, false, true, true, false, false, true,]},
@@ -42,6 +52,24 @@ var player_ship = {
 		{"index":"008", "mods": [false, false, false, false, false, false, false, false, ]},
 	],
 }
+
+
+func get_hub_area_name():
+	return HUB_AREAS[current_hub_area].title
+
+
+func next_hub_area():
+	current_hub_area += 1
+	if current_hub_area >= HUB_AREAS.size():
+		current_hub_area = 0
+	return HUB_AREAS[current_hub_area].scene
+
+
+func prev_hub_area():
+	current_hub_area -= 1
+	if current_hub_area < 0:
+		current_hub_area = HUB_AREAS.size() - 1
+	return HUB_AREAS[current_hub_area].scene
 
 
 func get_prev_scene():

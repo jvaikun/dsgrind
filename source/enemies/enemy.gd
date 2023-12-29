@@ -8,7 +8,7 @@ const impact_obj = preload("res://effects/impact.tscn")
 
 var hp = 1: set = set_hp
 var score_value = 5
-var direction = Vector2.DOWN: set = set_dir
+var direction = Vector2.ZERO: set = set_dir
 var state = ThinkState.PATROL: set = set_state
 var think_time = 0.5
 var is_thinking = false
@@ -31,18 +31,23 @@ func set_state(val):
 		state = val
 	match state:
 		ThinkState.IDLE:
+			print("State: IDLE")
 			$ShootTimer.stop()
 			think_time = 0.2
-			speed = 0
+			self.direction = Vector2.ZERO
 		ThinkState.PATROL:
+			print("State: PATROL")
 			$ShootTimer.stop()
 			think_time = 0.2
 		ThinkState.HUNT:
+			print("State: HUNT")
 			$ShootTimer.start(shot_time)
 			think_time = 0.1
 		ThinkState.ATTACK:
+			print("State: ATTACK")
 			think_time = 0.1
 		ThinkState.FLEE:
+			print("State: FLEE")
 			think_time = 0.1
 
 
@@ -65,14 +70,12 @@ func set_dir(value : Vector2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.state = ThinkState.IDLE
-	$ShootTimer.start(shot_time)
 	$ThinkTimer.start(think_time)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = direction.normalized() * speed
-	set_velocity(velocity)
+	set_velocity(direction.normalized() * speed)
 	move_and_slide()
 
 
@@ -138,7 +141,7 @@ func _on_DetectRadius_area_entered(area):
 	if area.is_in_group("player"):
 		target_pos = area.global_position
 		target_inst = area
-	set_state(ThinkState.HUNT)
+		set_state(ThinkState.HUNT)
 
 
 func _on_DetectRadius_area_exited(area):

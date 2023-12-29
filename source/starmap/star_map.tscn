@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3i6slcyjpg6c"]
+[gd_scene load_steps=6 format=3 uid="uid://b3i6slcyjpg6c"]
 
 [ext_resource type="Texture2D" uid="uid://dxudgp32kq1jt" path="res://starmap/sprites/star_bg.jpg" id="1"]
-[ext_resource type="PackedScene" path="res://starmap/map_sector.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://ui/item_list.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://j1mwjtk7tnts" path="res://starmap/map_sector.tscn" id="2"]
+[ext_resource type="FontFile" uid="uid://c780w3p5m5wq7" path="res://ui/fonts/Kenney Pixel.ttf" id="2_5t144"]
+[ext_resource type="PackedScene" uid="uid://dshbthhxymj2b" path="res://ui/nav_bar.tscn" id="2_a5uyf"]
 [ext_resource type="Script" path="res://starmap/star_map.gd" id="5"]
 
 [node name="StarMap" type="Control"]
@@ -12,121 +13,206 @@ script = ExtResource("5")
 
 [node name="Menu" type="CanvasLayer" parent="."]
 
-[node name="SideBar" type="PanelContainer" parent="Menu"]
-anchors_preset = 9
+[node name="Main" type="HBoxContainer" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 278.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Body" type="VBoxContainer" parent="Menu/SideBar"]
+[node name="Left" type="VBoxContainer" parent="Menu/Main"]
 layout_mode = 2
 
-[node name="BtnHangar" type="Button" parent="Menu/SideBar/Body"]
-layout_mode = 2
-text = "Hangar"
-
-[node name="BtnBack" type="Button" parent="Menu/SideBar/Body"]
-layout_mode = 2
-text = "Return to Title"
-
-[node name="Details" type="VBoxContainer" parent="Menu/SideBar/Body"]
-custom_minimum_size = Vector2(0, 256)
+[node name="NavBar" parent="Menu/Main/Left" instance=ExtResource("2_a5uyf")]
 layout_mode = 2
 
-[node name="Text" type="RichTextLabel" parent="Menu/SideBar/Body/Details"]
+[node name="Factions" type="PanelContainer" parent="Menu/Main/Left"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Menu/Main/Left/Factions"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Menu/Main/Left/Factions/Content"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 48
+text = "Factions"
+
+[node name="FactionList" type="ItemList" parent="Menu/Main/Left/Factions/Content"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 32
+
+[node name="Missions" type="PanelContainer" parent="Menu/Main/Left"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BtnIntel" type="Button" parent="Menu/SideBar/Body/Details"]
+[node name="Content" type="VBoxContainer" parent="Menu/Main/Left/Missions"]
 layout_mode = 2
-text = "Apply Intel"
 
-[node name="BtnRun" type="Button" parent="Menu/SideBar/Body/Details"]
+[node name="Header" type="Label" parent="Menu/Main/Left/Missions/Content"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 48
+text = "Missions"
+
+[node name="MissionList" type="ItemList" parent="Menu/Main/Left/Missions/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 32
+max_text_lines = 3
+fixed_column_width = 256
+icon_mode = 0
+
+[node name="Right" type="VBoxContainer" parent="Menu/Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Map" type="SubViewportContainer" parent="Menu/Main/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="MapView" type="SubViewport" parent="Menu/Main/Right/Map"]
+handle_input_locally = false
+size = Vector2i(2, 2)
+render_target_update_mode = 4
+
+[node name="Map" type="TextureRect" parent="Menu/Main/Right/Map/MapView"]
+offset_right = 1020.0
+offset_bottom = 381.0
+size_flags_vertical = 3
+texture = ExtResource("1")
+
+[node name="MapCam" type="Camera2D" parent="Menu/Main/Right/Map/MapView"]
+limit_left = 0
+limit_top = 0
+
+[node name="Sectors" type="Node2D" parent="Menu/Main/Right/Map/MapView"]
+
+[node name="MapSector1" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(502, 328)
+
+[node name="MapSector2" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(726, 328)
+
+[node name="MapSector3" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(950, 328)
+
+[node name="MapSector4" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(1174, 328)
+
+[node name="MapSector5" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(1398, 328)
+
+[node name="MapSector6" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(390, 520)
+
+[node name="MapSector7" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(614, 520)
+
+[node name="MapSector8" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(838, 520)
+
+[node name="MapSector9" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(1062, 520)
+
+[node name="MapSector10" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(1286, 520)
+
+[node name="MapSector11" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(1510, 520)
+
+[node name="MapSector12" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(502, 712)
+
+[node name="MapSector13" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(726, 712)
+
+[node name="MapSector14" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(950, 712)
+
+[node name="MapSector15" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(1174, 712)
+
+[node name="MapSector16" parent="Menu/Main/Right/Map/MapView/Sectors" instance=ExtResource("2")]
+position = Vector2(1398, 712)
+
+[node name="Missions" type="Node2D" parent="Menu/Main/Right/Map/MapView"]
+
+[node name="Info" type="PanelContainer" parent="Menu/Main/Right"]
+layout_mode = 2
+
+[node name="Content" type="HBoxContainer" parent="Menu/Main/Right/Info"]
+layout_mode = 2
+
+[node name="Mission" type="VBoxContainer" parent="Menu/Main/Right/Info/Content"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="Label" parent="Menu/Main/Right/Info/Content/Mission"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 48
+text = "Mission Details"
+
+[node name="Body" type="HBoxContainer" parent="Menu/Main/Right/Info/Content/Mission"]
+layout_mode = 2
+
+[node name="Params" type="Label" parent="Menu/Main/Right/Info/Content/Mission/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 32
+text = "Mission parameters"
+
+[node name="Outcomes" type="Label" parent="Menu/Main/Right/Info/Content/Mission/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 32
+text = "Mission outcomes"
+
+[node name="BtnRun" type="Button" parent="Menu/Main/Right/Info/Content/Mission"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 32
 text = "Run Mission"
 
-[node name="TabBar" type="TabContainer" parent="Menu/SideBar/Body"]
+[node name="Intel" type="VBoxContainer" parent="Menu/Main/Right/Info/Content"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="Menu/Main/Right/Info/Content/Intel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 48
+text = "Data Fragments"
+
+[node name="SubHeader" type="Label" parent="Menu/Main/Right/Info/Content/Intel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 24
+text = "Alter mission with new data"
+
+[node name="IntelList" type="ItemList" parent="Menu/Main/Right/Info/Content/Intel"]
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 32
 
-[node name="Missions" parent="Menu/SideBar/Body/TabBar" instance=ExtResource("3")]
+[node name="BtnIntel" type="Button" parent="Menu/Main/Right/Info/Content/Intel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_5t144")
+theme_override_font_sizes/font_size = 32
+text = "Append Data Fragment"
 
-[node name="Intel" parent="Menu/SideBar/Body/TabBar" instance=ExtResource("3")]
-visible = false
-layout_mode = 2
-
-[node name="Factions" parent="Menu/SideBar/Body/TabBar" instance=ExtResource("3")]
-visible = false
-layout_mode = 2
-
-[node name="Map" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1600.0
-offset_bottom = 900.0
-texture = ExtResource("1")
-expand_mode = 1
-
-[node name="MapCam" type="Camera2D" parent="."]
-limit_left = -256
-limit_top = 0
-limit_right = 1600
-limit_bottom = 900
-
-[node name="Sectors" type="Node2D" parent="."]
-
-[node name="MapSector1" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(376, 272)
-
-[node name="MapSector2" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(600, 272)
-
-[node name="MapSector3" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(824, 272)
-
-[node name="MapSector4" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(1048, 272)
-
-[node name="MapSector5" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(1272, 272)
-
-[node name="MapSector6" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(264, 464)
-
-[node name="MapSector7" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(488, 464)
-
-[node name="MapSector8" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(712, 464)
-
-[node name="MapSector9" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(936, 464)
-
-[node name="MapSector10" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(1160, 464)
-
-[node name="MapSector11" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(1384, 464)
-
-[node name="MapSector12" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(376, 656)
-
-[node name="MapSector13" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(600, 656)
-
-[node name="MapSector14" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(824, 656)
-
-[node name="MapSector15" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(1048, 656)
-
-[node name="MapSector16" parent="Sectors" instance=ExtResource("2")]
-position = Vector2(1272, 656)
-
-[node name="Missions" type="Node2D" parent="."]
-
-[connection signal="pressed" from="Menu/SideBar/Body/BtnHangar" to="." method="_on_BtnHangar_pressed"]
-[connection signal="pressed" from="Menu/SideBar/Body/BtnBack" to="." method="_on_BtnBack_pressed"]
-[connection signal="pressed" from="Menu/SideBar/Body/Details/BtnRun" to="." method="_on_BtnRun_pressed"]
-[connection signal="item_selected" from="Menu/SideBar/Body/TabBar/Missions" to="." method="_on_Missions_item_selected"]
-[connection signal="item_selected" from="Menu/SideBar/Body/TabBar/Intel" to="." method="_on_Intel_item_selected"]
-[connection signal="item_selected" from="Menu/SideBar/Body/TabBar/Factions" to="." method="_on_Factions_item_selected"]
+[connection signal="item_selected" from="Menu/Main/Left/Factions/Content/FactionList" to="." method="_on_faction_list_item_selected"]
+[connection signal="item_selected" from="Menu/Main/Left/Missions/Content/MissionList" to="." method="_on_mission_list_item_selected"]
+[connection signal="pressed" from="Menu/Main/Right/Info/Content/Mission/BtnRun" to="." method="_on_BtnRun_pressed"]
+[connection signal="item_selected" from="Menu/Main/Right/Info/Content/Intel/IntelList" to="." method="_on_intel_list_item_selected"]

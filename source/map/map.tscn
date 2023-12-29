@@ -1,0 +1,205 @@
+[gd_scene load_steps=12 format=3 uid="uid://wg8r2mpw0hsi"]
+
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://ui/skill_icon.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://dxudgp32kq1jt" path="res://starmap/sprites/star_bg.jpg" id="2_dnqil"]
+[ext_resource type="StyleBox" uid="uid://ddlp76qkpp150" path="res://ui/ui_panel.tres" id="3"]
+[ext_resource type="FontFile" uid="uid://c780w3p5m5wq7" path="res://ui/fonts/Kenney Pixel.ttf" id="3_0crpu"]
+[ext_resource type="Texture2D" uid="uid://cdyufoi8dhpcc" path="res://ui/textures/bar_fill.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cidle0txgguw5" path="res://ui/textures/bar_bg.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cf0s15qxo2644" path="res://ui/textures/bar_fg.png" id="6"]
+[ext_resource type="Script" path="res://map/map.gd" id="10"]
+[ext_resource type="PackedScene" uid="uid://c1shvdv2bv6ie" path="res://ui/ui_objective_list.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://enemies/enemy_gunner.tscn" id="14"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("10")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ShipStatus" type="PanelContainer" parent="UI"]
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 254.0
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("3")
+
+[node name="Content" type="GridContainer" parent="UI/ShipStatus"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="UI/ShipStatus/Content"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0crpu")
+theme_override_font_sizes/font_size = 32
+text = "HULL: "
+horizontal_alignment = 2
+
+[node name="ArmorBar" type="TextureProgressBar" parent="UI/ShipStatus/Content"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("5")
+texture_over = ExtResource("6")
+texture_progress = ExtResource("4")
+tint_over = Color(1, 0.5, 0.5, 1)
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="Label2" type="Label" parent="UI/ShipStatus/Content"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0crpu")
+theme_override_font_sizes/font_size = 32
+text = "SHIELD: "
+horizontal_alignment = 2
+
+[node name="ShieldBar" type="TextureProgressBar" parent="UI/ShipStatus/Content"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("5")
+texture_over = ExtResource("6")
+texture_progress = ExtResource("4")
+tint_over = Color(0.5, 0.5, 1, 1)
+tint_progress = Color(0, 0, 1, 1)
+
+[node name="Weapons" type="PanelContainer" parent="UI"]
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -98.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("3")
+
+[node name="Content" type="GridContainer" parent="UI/Weapons"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="UI/Weapons/Content"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0crpu")
+theme_override_font_sizes/font_size = 32
+text = "HEAT: "
+horizontal_alignment = 2
+
+[node name="HeatBar" type="TextureProgressBar" parent="UI/Weapons/Content"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("5")
+texture_over = ExtResource("6")
+texture_progress = ExtResource("4")
+tint_over = Color(1, 0.5, 0.5, 1)
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="Label2" type="Label" parent="UI/Weapons/Content"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0crpu")
+theme_override_font_sizes/font_size = 32
+text = "ENERGY: "
+horizontal_alignment = 2
+
+[node name="EnergyBar" type="TextureProgressBar" parent="UI/Weapons/Content"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("5")
+texture_over = ExtResource("6")
+texture_progress = ExtResource("4")
+tint_over = Color(0.5, 0.5, 1, 1)
+tint_progress = Color(0, 0, 1, 1)
+
+[node name="Map" type="PanelContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_styles/panel = ExtResource("3")
+
+[node name="Skills" type="PanelContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -120.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("3")
+
+[node name="SkillList" type="HBoxContainer" parent="UI/Skills"]
+layout_mode = 2
+
+[node name="Weapon1" parent="UI/Skills/SkillList" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="Weapon2" parent="UI/Skills/SkillList" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="Device1" parent="UI/Skills/SkillList" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="Device2" parent="UI/Skills/SkillList" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="Device3" parent="UI/Skills/SkillList" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="Device4" parent="UI/Skills/SkillList" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="UIObjectiveList" parent="UI" instance=ExtResource("11")]
+theme_override_styles/panel = ExtResource("3")
+
+[node name="BGSprite" type="TextureRect" parent="."]
+offset_right = 3840.0
+offset_bottom = 2160.0
+texture = ExtResource("2_dnqil")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(640, 360)
+
+[node name="PlayerCam" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 3840
+limit_bottom = 2160
+
+[node name="WorldLimit" type="Marker2D" parent="."]
+position = Vector2(3840, 2160)
+
+[node name="EnemyGunner" parent="." instance=ExtResource("14")]
+position = Vector2(265, 224)
+motion_mode = 0

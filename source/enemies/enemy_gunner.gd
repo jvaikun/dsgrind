@@ -4,6 +4,7 @@ const bullet_obj = preload("res://bullets/bullet_enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	shot_pattern = [
 		{"pos":$ShootPos1, "bullet":bullet_obj, "angle":0},
 		{"pos":$ShootPos2, "bullet":bullet_obj, "angle":0}
